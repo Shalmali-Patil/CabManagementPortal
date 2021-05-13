@@ -9,7 +9,7 @@ import com.test.cabmanagement.bean.City;
 import com.test.cabmanagement.enums.VehicleState;
 
 public interface CabService {
-    public void registerCabs(List<Cab> cabs);
+    public List<Cab> registerCabs(List<Cab> cabs);
     public void updateCabState(Integer cabId, VehicleState vehicleState);
     public List<Cab> getAllCabs();
     public List<Cab> getCabsForCity(City city);

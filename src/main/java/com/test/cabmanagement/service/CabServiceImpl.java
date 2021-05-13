@@ -15,9 +15,12 @@ public class CabServiceImpl implements CabService {
     List<CabHistory> cabHistoryList = new ArrayList<>();
 
     @Override
-    public void registerCabs(List<Cab> cabs) {
+    public List<Cab> registerCabs(List<Cab> cabs) {
         cabList.addAll(cabs);
-
+        for(Cab c:cabList) {
+            updateCabState(c.getId(), c.getState());
+        }
+        return cabList;
     }
 
     @Override
@@ -47,8 +50,9 @@ public class CabServiceImpl implements CabService {
         if(filteredCabHistory == null || filteredCabHistory.isEmpty()) {
             return 0;
         }
+        Cab cab = cabList.stream().filter(c -> cabId.equals(c.getId())).findFirst().get();
         long idleMilliSeconds = 0;
-        Date prevIdleTime = startTime;
+        Date prevIdleTime = cab.getRegistrationTime();
         VehicleState lastState = null;
         for(CabHistory ch: filteredCabHistory) {
             if(ch.getVehicleState().equals(VehicleState.ON_TRIP)) {

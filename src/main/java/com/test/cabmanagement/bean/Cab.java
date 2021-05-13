@@ -9,6 +9,7 @@ public class Cab {
     private String registrationNumber;
     private City city;
     private VehicleState state;
+    private Date registrationTime;
     private Date lastModifiedTime;
     private static Integer IDCounter = 1;
 
@@ -47,20 +48,29 @@ public class Cab {
     public Integer getId() {
         return id;
     }
+    
+    public Date getRegistrationTime() {
+        return registrationTime;
+    }
+
+    public void setRegistrationTime(Date registrationTime) {
+        this.registrationTime = registrationTime;
+    }
 
     public Cab(String registrationNumber, City city, VehicleState state) {
         this.id = IDCounter++;
         this.registrationNumber = registrationNumber;
         this.city = city;
         this.state = state;
-        this.lastModifiedTime = new Date();
+        Date date = new Date();
+        this.lastModifiedTime = date;
+        this.registrationTime = date;
     }
 
     @Override
     public String toString() {
-        return "Cab [id=" + id + ", registrationNumber=" + registrationNumber + ", city=" + city + ", state="
-                + state + ", lastModifiedTime=" + lastModifiedTime + "]";
+        return "Cab [id=" + id + ", registrationNumber=" + registrationNumber + ", city=" + city + ", state=" + state
+                + ", registrationTime=" + registrationTime + ", lastModifiedTime=" + lastModifiedTime + "]";
     }
-
     
 }

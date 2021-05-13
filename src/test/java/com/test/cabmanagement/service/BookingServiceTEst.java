@@ -2,6 +2,7 @@ package com.test.cabmanagement.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -34,14 +35,14 @@ class BookingServiceTEst {
     }
 
     @Test
-    void testBookCab() {
+    void testGetTopNCities() {
         City city1 = cityService.addCity("Pune");
         List<Cab> cabs = new ArrayList<>();
         String registrationNumber1 = "82791";
         Cab cab1 = new Cab(registrationNumber1, city1, VehicleState.IDLE);
         cabs.add(cab1);
         cabService.registerCabs(cabs);
-        Trip trip = bookingService.bookCab(city1);
+        bookingService.bookCab(city1);
         
         int n = 1;
         List<City> topCities = bookingService.getTopNCities(n);

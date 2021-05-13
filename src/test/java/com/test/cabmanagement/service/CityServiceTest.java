@@ -1,28 +1,15 @@
-package com.test.cabmanagement;
+package com.test.cabmanagement.service;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.test.cabmanagement.bean.City;
-import com.test.cabmanagement.service.CityService;
-import com.test.cabmanagement.service.CityServiceImpl;
 
 class CityServiceTest {
-    CityService cityService;
-
-    @BeforeAll
-    static void setUpBeforeClass() throws Exception {
-        cityService = new CityServiceImpl();
-    }
-
-    @BeforeEach
-    void setUp() throws Exception {
-    }
+    CityService cityService = new CityServiceImpl();
 
     @Test
     void testAddNewCity() {
@@ -51,9 +38,9 @@ class CityServiceTest {
     @Test
     void testGetCityList() {
         String cityName = "Mumbai";
-        
+        cityService.addCity(cityName);
         List<City> cityList = cityService.getCityList();
         assertTrue(cityList != null && !cityList.isEmpty());
-        assertTrue(cityList.size() == 2);
+        assertTrue(cityList.size() == 1);
     }
 }
